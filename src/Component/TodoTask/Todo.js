@@ -73,14 +73,13 @@ function Todo() {
     const sourceListId = source.droppableId;
     const destListId = destination.droppableId;
 
-    // Find source and destination list
     const sourceList = lists.find(list => list.id.toString() === sourceListId);
     const destList = lists.find(list => list.id.toString() === destListId);
 
-    // Clone tasks
+    
     const draggedTask = sourceList.tasks[source.index];
 
-    // Same list
+    
     if (sourceListId === destListId) {
       const updatedTasks = [...sourceList.tasks];
       updatedTasks.splice(source.index, 1);
@@ -94,7 +93,7 @@ function Todo() {
 
       setLists(updatedLists);
     } else {
-      // Different lists
+      
       const sourceTasks = [...sourceList.tasks];
       sourceTasks.splice(source.index, 1);
 

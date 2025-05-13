@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import "./App.css";
+
+
+
+const Homeui = lazy(() => import('./Component/Home/Homeui'));
+const Todo = lazy(() => import('./Component/TodoTask/Todo'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+        <Route path="/" element={<Homeui />} />
+          <Route path="/todo" element={<Todo />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 
